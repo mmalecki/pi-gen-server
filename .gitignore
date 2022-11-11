@@ -1,6 +1,8 @@
 deploy/*
 work/*
 config
+config-personal
+config-secrets
 postrun.sh
 SKIP
 SKIP_IMAGES

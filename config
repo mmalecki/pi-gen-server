@@ -1,0 +1,5 @@
+source config-packer
+source config-server
+source config-base
+# source config-personal
+# source config-secrets

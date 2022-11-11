@@ -1,0 +1,4 @@
+IMG_NAME=base
+RELEASE=bullseye
+
+STAGE_LIST="stage0 stage1 stage2-base"

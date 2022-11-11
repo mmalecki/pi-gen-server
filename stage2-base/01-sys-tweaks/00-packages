@@ -5,8 +5,6 @@ python-is-python3
 python3-rpi.gpio v4l-utils
 python3-gpiozero
 avahi-daemon
-lua5.1
-luajit
 hardlink ca-certificates curl
 fake-hwclock nfs-common usbutils
 libraspberrypi-dev libraspberrypi-doc libfreetype6-dev
@@ -26,11 +24,9 @@ policykit-1
 ssh-import-id
 rng-tools
 ethtool
-ntfs-3g
 pciutils
 rpi-eeprom
 raspinfo
 udisks2
 unzip zip p7zip-full
 file
-kms++-utils

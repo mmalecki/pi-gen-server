@@ -16,7 +16,6 @@ services:
       - /dev/video0:/dev/video0
     volumes:
       - octoprint:/octoprint
-      - /run/avahi-daemon/socket:/run/avahi-daemon/socket
     environment:
       - ENABLE_MJPG_STREAMER=true
     networks:
@@ -38,4 +37,16 @@ volumes:
 
 networks:
   octoprint:
+EOF
+
+chown -R ${OPERATOR_USER}:${OPERATOR_GROUP} .
+
+mkdir -p /etc/systemd/dnssd
+
+tee > /etc/systemd/dnssd/prusa-i3.dnssd <<-EOF
+[Service]
+Name=%H
+Type=_http._tcp
+Port=80
+txtText=path=/ t=prusa-i3
 EOF

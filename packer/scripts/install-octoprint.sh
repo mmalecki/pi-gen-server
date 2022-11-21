@@ -48,5 +48,5 @@ tee > /etc/systemd/dnssd/prusa-i3.dnssd <<-EOF
 Name=%H
 Type=_http._tcp
 Port=80
-txtText=path=/ t=prusa-i3
+TxtText=path=/ devicetype=octoprint
 EOF

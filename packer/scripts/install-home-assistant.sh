@@ -69,5 +69,5 @@ tee > /etc/systemd/dnssd/home.dnssd <<-EOF
 Name=%H
 Type=_http._tcp
 Port=80
-txtText=path=/ t=home
+TxtText=path=/
 EOF

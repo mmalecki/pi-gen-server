@@ -2,7 +2,7 @@
 mkdir -p /srv/docker/home-assistant
 cd /srv/docker/home-assistant
 
-tee > docker-compose.yml <<-EOF
+tee docker-compose.yml <<-EOF
 version: '3'
 services:
   homeassistant:
@@ -64,7 +64,7 @@ chown -R ${OPERATOR_USER}:${OPERATOR_GROUP} .
 
 mkdir -p /etc/systemd/dnssd
 
-tee > /etc/systemd/dnssd/home.dnssd <<-EOF
+tee /etc/systemd/dnssd/home.dnssd <<-EOF
 [Service]
 Name=%H
 Type=_http._tcp

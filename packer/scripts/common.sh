@@ -7,7 +7,7 @@
 rm /etc/ld.so.preload
 
 # Enable mDNS, disable LLMNR on the network
-tee > /etc/systemd/network/wlan0.network <<-EOF
+tee /etc/systemd/network/wlan0.network <<-EOF
 [Match]
 Name=wlan0
 
@@ -18,7 +18,7 @@ LLMNR=no
 EOF
 
 # Enable mDNS, disable LLMNR on the resolver
-tee > /etc/systemd/resolved.conf <<-EOF
+tee /etc/systemd/resolved.conf <<-EOF
 [Resolve]
 DNS=8.8.8.8 8.8.4.4
 FallbackDNS=1.1.1.1

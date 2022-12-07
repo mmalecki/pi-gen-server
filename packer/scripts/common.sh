@@ -28,4 +28,13 @@ MulticastDNS=yes
 LLMNR=no
 EOF
 
+# Enable backports, install fresh systemd (and unbreak the time):
+tee /etc/apt/sources.list.d/backports.list <<-EOF
+deb http://deb.debian.org/debian bullseye-backports main
+EOF
+
+apt-get update
+apt-get install -y systemd/bullseye-backports systemd-timesyncd/bullseye-backports
+
+# Create our directory structure:
 mkdir -p /srv/

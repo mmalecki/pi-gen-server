@@ -3,10 +3,10 @@ mkdir -p /srv/docker/home-assistant
 cd /srv/docker/home-assistant
 
 tee docker-compose.yml <<-EOF
-version: '3'
+version: '2.4'
 services:
   homeassistant:
-    image: "ghcr.io/home-assistant/home-assistant:stable"
+    image: ghcr.io/home-assistant/home-assistant:stable
     volumes:
       - ./home-assistant:/config
     ports:
@@ -50,7 +50,7 @@ services:
   mdns_repeater:
     image: jdbeeler/mdns-repeater:latest
     restart: unless-stopped
-    network_mode: "host"
+    network_mode: host
     privileged: true
     environment:
       - DOCKER_NETWORK_NAME=home-assistant
@@ -64,6 +64,7 @@ volumes:
 
 networks:
   home-assistant:
+    driver: bridge
 EOF
 
 chown -R ${OPERATOR_USER}:${OPERATOR_GROUP} .

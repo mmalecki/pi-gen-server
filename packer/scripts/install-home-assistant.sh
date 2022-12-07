@@ -41,6 +41,12 @@ services:
       - 1883:1883
       - 9001:9001
 
+  wolbridge:
+    image: ghcr.io/mmalecki/wakeupbr-docker:latest
+    restart: unless-stopped
+    network_mode: host
+    command: -l 0.0.0.0:9 -o 255.255.255.255
+
   mdns_repeater:
     image: jdbeeler/mdns-repeater:latest
     restart: unless-stopped

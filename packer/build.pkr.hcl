@@ -11,6 +11,7 @@ build {
   sources = [
     "source.arm-image.prusa_i3",
     "source.arm-image.home",
+    "source.arm-image.infra",
   ]
 
   name = "common"
@@ -66,8 +67,24 @@ build {
     })
   }
 
+  provisioner "file" {
+    only = ["arm-image.infra"]
+
+    destination = "/etc/cloud/cloud.cfg.d/infra.cfg"
+    content = templatefile("templates/cloud-init-common.tmpl", {
+      hostname = "infra"
+      cmds : [
+        local.etc_hosts,
+      ]
+    })
+  }
+
   provisioner "shell" {
     script = "scripts/common-post.sh"
   }
 
+  provisioner "shell" {
+    only = ["arm-image.infra", "arm-image.home"]
+    script = "scripts/wired-post.sh"
+  }
 }

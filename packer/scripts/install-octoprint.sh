@@ -7,7 +7,7 @@ version: '3'
 
 services:
   octoprint:
-    image: mmalecki/octoprint-mdns:1.8.6
+    image: octoprint/octoprint:1.8.7
     restart: unless-stopped
     ports:
       - 80:80
@@ -20,17 +20,6 @@ services:
       - ENABLE_MJPG_STREAMER=true
     networks:
       - octoprint
-
-  mdns_repeater:
-    image: jdbeeler/mdns-repeater:latest
-    network_mode: "host"
-    privileged: true
-    environment:
-      - DOCKER_NETWORK_NAME=octoprint
-      - EXTERNAL_INTERFACE=wlan0
-      - USE_MDNS_REPEATER=1
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   octoprint:

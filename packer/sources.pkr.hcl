@@ -4,7 +4,7 @@ source "arm-image" "prusa_i3" {
   image_type        = "raspberrypi"
   output_filename   = "${var.output_directory}/prusa_i3.img"
   qemu_binary       = "qemu-aarch64-static"
-  target_image_size = var.target_image_size
+  target_image_size = 3 * 1024 * 1024 * 1024
 }
 
 source "arm-image" "home" {
@@ -13,7 +13,7 @@ source "arm-image" "home" {
   image_type        = "raspberrypi"
   output_filename   = "${var.output_directory}/home.img"
   qemu_binary       = "qemu-aarch64-static"
-  target_image_size = var.target_image_size
+  target_image_size = 3 * 1024 * 1024 * 1024
 }
 
 source "arm-image" "infra" {
@@ -22,5 +22,14 @@ source "arm-image" "infra" {
   image_type        = "raspberrypi"
   output_filename   = "${var.output_directory}/infra.img"
   qemu_binary       = "qemu-aarch64-static"
-  target_image_size = var.target_image_size
+  target_image_size = 3 * 1024 * 1024 * 1024
+}
+
+source "arm-image" "media" {
+  iso_url           = var.source_iso_url
+  iso_checksum      = var.source_iso_checksum
+  image_type        = "raspberrypi"
+  output_filename   = "${var.output_directory}/media.img"
+  qemu_binary       = "qemu-aarch64-static"
+  target_image_size = 6 * 1024 * 1024 * 1204 # desktop build
 }

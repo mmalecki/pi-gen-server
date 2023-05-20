@@ -14,7 +14,3 @@ variable "operator_user_name" {
 variable "output_directory" {
   default = "../deploy"
 }
-
-variable "target_image_size" {
-  default = 3 * 1024 * 1024 * 1024
-}

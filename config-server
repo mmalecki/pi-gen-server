@@ -1,3 +1,2 @@
-ENABLE_SSH=1
-PUBKEY_ONLY_SSH=1
-TIMEZONE_DEFAULT=UTC
+STAGE_LIST="stage0 stage1 stage2-server"
+IMG_NAME="server"

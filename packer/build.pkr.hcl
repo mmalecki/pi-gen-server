@@ -5,19 +5,30 @@ locals {
   ]
 
   etc_hosts = "sed -i \"s/raspberrypi/$(hostname)/\" /etc/hosts"
-}
 
-build {
-  sources = [
+  server_builds = [
     "source.arm-image.prusa_i3",
     "source.arm-image.home",
     "source.arm-image.infra",
   ]
 
+  desktop_builds = [
+    "source.arm-image.media",
+  ]
+}
+
+build {
+  sources = concat(local.server_builds, local.desktop_builds)
+
   name = "common"
 
   provisioner "shell" {
     script = "scripts/common.sh"
+  }
+
+  provisioner "shell" {
+    only = local.server_builds
+    script = "scripts/systemd.sh"
   }
 
   provisioner "shell" {
@@ -39,6 +50,11 @@ build {
     only = ["arm-image.home"]
     script = "scripts/install-home-assistant.sh"
     environment_vars = local.op
+  }
+
+  provisioner "shell" {
+    only = ["arm-image.media"]
+    script = "scripts/install-media.sh"
   }
 
   provisioner "file" {
@@ -79,8 +95,21 @@ build {
     })
   }
 
+  provisioner "file" {
+    only = ["arm-image.media"]
+
+    destination = "/etc/cloud/cloud.cfg.d/media.cfg"
+    content = templatefile("templates/cloud-init-common.tmpl", {
+      hostname = "media"
+      cmds : [
+        local.etc_hosts,
+      ]
+    })
+  }
+
   provisioner "shell" {
-    script = "scripts/common-post.sh"
+    only = local.server_builds
+    script = "scripts/systemd-post.sh"
   }
 
   provisioner "shell" {

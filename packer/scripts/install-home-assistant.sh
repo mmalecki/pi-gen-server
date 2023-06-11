@@ -47,18 +47,6 @@ services:
     network_mode: host
     command: -l 0.0.0.0:9 -o 255.255.255.255
 
-  mdns_repeater:
-    image: jdbeeler/mdns-repeater:latest
-    restart: unless-stopped
-    network_mode: host
-    privileged: true
-    environment:
-      - DOCKER_NETWORK_NAME=home-assistant
-      - EXTERNAL_INTERFACE=wlan0
-      - USE_MDNS_REPEATER=1
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-
 volumes:
   mosquitto:
 

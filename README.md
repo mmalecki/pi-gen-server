@@ -6,6 +6,9 @@ which was in turn derived from the Raspbian project.
 **Note**: Raspberry Pi OS 32 bit images are based primarily on Raspbian, while
 Raspberry Pi OS 64 bit images are based primarily on Debian.
 
+(Modified by @mmalecki to build thinner images meant for server or embedded use.
+Used with my [`pi-gen`](https://github.com/mmalecki/pi-gen-packer) Packer setup to extend them.)
+
 ## Dependencies
 
 pi-gen runs on Debian-based operating systems released after 2017, and we

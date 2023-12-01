@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 install -v -d					"${ROOTFS_DIR}/etc/wpa_supplicant"
-install -v -m 600 files/wpa_supplicant.conf	"${ROOTFS_DIR}/etc/wpa_supplicant/"
+install -v -m 600 files/wpa_supplicant-wlan0.conf	"${ROOTFS_DIR}/etc/wpa_supplicant/"
 
 if [ -v WPA_COUNTRY ]; then
 	on_chroot <<- EOF
@@ -20,3 +20,8 @@ else
     echo 1 > "${ROOTFS_DIR}/var/lib/systemd/rfkill/platform-fe300000.mmcnr:wlan"
     echo 1 > "${ROOTFS_DIR}/var/lib/systemd/rfkill/platform-1001100000.mmc:wlan"
 fi
+
+on_chroot <<-EOF
+systemctl enable systemd-networkd
+systemctl enable wpa_supplicant@wlan0
+EOF
